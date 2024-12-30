@@ -1,0 +1,89 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "This is a simple API to simulate car loan payments.",
+    "version": "1.0.0",
+    "title": "Car Loan Simulation API"
+  },
+  "host": "localhost:5000",
+  "basePath": "/",
+  "schemes": [
+    "http"
+  ],
+  "paths": {
+    "/simulate": {
+      "post": {
+        "summary": "Simulate car loan payments",
+        "description": "Calculates monthly payments and total cost of a car loan.",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Car loan details",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/LoanRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/LoanResponse"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "LoanRequest": {
+      "type": "object",
+      "properties": {
+        "car_price": {
+          "type": "number",
+          "example": 419000
+        },
+        "down_payment": {
+          "type": "number",
+          "example": 20
+        },
+        "interest_rate": {
+          "type": "number",
+          "example": 1.5
+        },
+        "months": {
+          "type": "integer",
+          "example": 60
+        }
+      }
+    },
+    "LoanResponse": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "string",
+          "example": "success"
+        },
+        "data": {
+          "type": "object",
+          "properties": {
+            "monthly_payment": {
+              "type": "number",
+              "example": 7800
+            },
+            "total_cost": {
+              "type": "number",
+              "example": 468000
+            },
+            "total_interest": {
+              "type": "number",
+              "example": 49000
+            }
+          }
+        }
+      }
+    }
+  }
+}
